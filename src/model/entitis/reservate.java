@@ -1,6 +1,7 @@
 package model.entitis;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class reservate {
     public Integer roomNumber;
@@ -26,5 +27,13 @@ public class reservate {
     }
 
 
+    public long duration(){
+        long diff = checkOut.getTime() - checkIn.getTime();
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+    }
 
+    public void updateDates(Date checkIn, Date checkOut){
+        this.checkIn =checkIn;
+        this.checkOut = checkOut;
+    }
 }
