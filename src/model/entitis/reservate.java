@@ -42,5 +42,16 @@ public class reservate {
         this.checkOut = checkOut;
     }
 
-
+    @Override
+    public String toString(){
+        return "room "
+         + roomNumber
+         + ", check-in: "
+         + sdf.format(checkIn)
+         + "check-out: "
+         + sdf.format(checkOut)
+         + ", "
+         +duration()
+         + " nigths";
+    }
 }
