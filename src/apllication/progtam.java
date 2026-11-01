@@ -15,11 +15,11 @@ public class progtam {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 
-        System.out.println("Room number: ");
+        System.out.print("Room number: ");
         Integer room = sc.nextInt();
-        System.out.println("Check-in date (dd/MM/yyyy): ");
+        System.out.print("Check-in date (dd/MM/yyyy): ");
         Date checkIn = sdf.parse(sc.next());
-        System.out.println("Check-out date (dd/MM/yyyy): ");
+        System.out.print("Check-out date (dd/MM/yyyy): ");
         Date checkOut = sdf.parse(sc.next());
 
         if (!checkOut.after(checkIn)){
@@ -28,22 +28,21 @@ public class progtam {
             reservate reservation = new reservate(room, checkIn, checkOut);
             System.out.println("reservate = "+ reservation);
 
-            System.out.println("Enter data to update the reservation:");
+            System.out.println("Enter data to update the reservation: ");
             System.out.print("Check-in date (dd/MM/yyyy): ");
              checkIn = sdf.parse(sc.next());
             System.out.print("Check-out date (dd/MM/yyyy): ");
              checkOut = sdf.parse(sc.next());
 
-             Date now = new Date();
-             if (checkIn.before(now) || checkOut.before(now)) {
-                 System.out.println("Error in reservation: Reservation dates for update must be future dates");
-             }
-            else if (checkOut.after(checkIn)){
-                System.out.println("Error in reservation: Reservation dates for update must be future dates");
-            }else {
-                 reservation.updateDates(checkIn, checkOut);
-                 System.out.println("reservate = "+ reservation);
-             }
+               String error = reservation.updateDates(checkIn, checkOut);
+
+               if (error != null) {
+                   System.out.println("error in reservation" + error);
+               }
+               if(error == null){
+                   System.out.println("reservate = "+ reservation);
+               }
+
 
         }
 
